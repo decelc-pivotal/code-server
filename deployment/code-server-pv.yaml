@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-code-server
+spec:
+  capacity:
+    storage: 500Mi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: standard
+  hostPath:
+    path: /var/vcap/code-server
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-code-server
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeName: pv-code-server
+  resources:
+    requests:
+      storage: 50Mi
+  storageClassName: standard
